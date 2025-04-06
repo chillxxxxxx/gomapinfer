@@ -2,7 +2,7 @@ package googlemaps
 
 import (
 	//"../common"
-	"github.com/mitroadmaps/gomapinfer/common"
+	"github.com/chillxxxxxx/gomapinfer/common"
 
 	"math"
 )
