@@ -1,7 +1,7 @@
 package spmetric
 
 import (
-	"github.com/mitroadmaps/gomapinfer/common"
+	"github.com/chillxxxxxx/gomapinfer/common"
 
 	"fmt"
 	"math"
