@@ -2,7 +2,6 @@ package common
 
 import (
 	"github.com/dhconnelly/rtreego"
-
 	"math"
 )
 
@@ -22,7 +21,7 @@ type edgeSpatial struct {
 }
 
 func (e *edgeSpatial) Bounds() *rtreego.Rect {
-	if e.rect == nil {
+	if e.rect == nil { // 只比较指针是否为 nil，避免结构体比较
 		r := e.edge.Src.Point.Rectangle()
 		r = r.Extend(e.edge.Dst.Point)
 		e.rect = RtreegoRect(r)
