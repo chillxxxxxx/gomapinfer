@@ -2,6 +2,7 @@ package common
 
 import (
 	"github.com/dhconnelly/rtreego"
+
 	"math"
 )
 
@@ -20,14 +21,13 @@ type edgeSpatial struct {
 	rect *rtreego.Rect
 }
 
-func (e *edgeSpatial) Bounds() rtreego.Rect {
+func (e *edgeSpatial) Bounds() *rtreego.Rect {
 	if e.rect == nil {
 		r := e.edge.Src.Point.Rectangle()
 		r = r.Extend(e.edge.Dst.Point)
 		e.rect = RtreegoRect(r)
 	}
-	// 返回 rect 的副本，满足 rtreego.Spatial 接口
-	return *e.rect
+	return e.rect
 }
 
 type Rtree struct {
@@ -35,7 +35,7 @@ type Rtree struct {
 }
 
 func (rtree Rtree) Search(rect Rectangle) []*Edge {
-	spatials := rtree.tree.SearchIntersect(*RtreegoRect(rect)) // 解引用指针
+	spatials := rtree.tree.SearchIntersect(RtreegoRect(rect))
 	edges := make([]*Edge, len(spatials))
 	for i := range spatials {
 		edges[i] = spatials[i].(*edgeSpatial).edge
